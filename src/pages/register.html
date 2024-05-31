@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+</head>
+
+<body>
+    <main>
+        <form id="register-form">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre </label>
+                <input required type="text" class="form-control" id="name" aria-describedby="name">
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Apellido</label>
+                <input required type="text" class="form-control" id="last-name" aria-describedby="last-name">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electronico</label>
+                <input required type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input required type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                <input required type="password" class="form-control" id="confirm-password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+    </main>
+    <script type="module" src="../js/register.js"></script>
+    <script type="module" src="../js/main.js"></script>
+</body>
+
+</html>
