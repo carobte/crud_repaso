@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center" style="background-color: #e3f2fd23;">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Bienvenido</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </nav>
+        <section>
+          <a id="logout" href="./login.html" class="btn btn-primary">Logout</a>
+        </section>
+      </header>
+    <main>
+        <h1 id="welcome" class="text-center my-5">Bienvenido</h1>
+        <section id="form-to submit">
+          <form id="form" action="" method="post" class="d-flex flex-column align-items-center">
+            <div class="d-flex">
+              <div class="mb-3 align-self-center">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control" id="marca" required>
+              </div>
+            </div>
+            <div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="price" required>
+              </div>
+            </div>
+            <div>
+              <div class="mb-3">
+                <label for="imagen" class="form-label">Url de la imagen</label>
+                <input type="url" class="form-control" id="imagen" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Agregar
+            </button>
+          </form>
+        </section>
+        <section id="table" class="my-5">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Imagen</th>
+                </tr>
+              </thead>
+              <tbody id="table">
+                
+                
+              </tbody>
+            <tfoot id="result"></tfoot>
+          </table>
+        </section>
+      </main>
+    <script type="module" src="../js/cars.js"></script>
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>
