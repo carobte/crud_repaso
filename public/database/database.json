@@ -1,11 +1,41 @@
 {
-    "users": [
-        {
-            "id": "1",
-            "name": "Caro",
-            "lastName": "Bte",
-            "email": "caro@correo.com",
-            "password": "caro123"
-        }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "name": "Caro",
+      "lastName": "Bte",
+      "email": "caro@correo.com",
+      "password": "caro123"
+    },
+    {
+      "id": "3195",
+      "name": "Caro",
+      "lastName": "Bte",
+      "email": "caro2@correo.com",
+      "password": "0721"
+    }
+  ],
+  "carros": [
+    {
+      "marca": "mazda4",
+      "precio": "1",
+      "img": "https://www.mazda.com.co/link/13b305c052ad4501bdb6f5ebcf6a800a.aspx",
+      "owner": "caro@correo.com",
+      "id": "9b7a"
+    },
+    {
+      "marca": "mazda2",
+      "precio": "3000000",
+      "img": "https://autolab.com.co/wp-content/uploads/2022/04/Mazda5-2010c-4.jpg",
+      "id": "9b8a",
+      "owner": "caro@correo.com"
+    },
+    {
+      "id": "2069",
+      "marca": "kia",
+      "precio": "1",
+      "img": "https://autolab.com.co/wp-content/uploads/2022/04/Mazda5-2010c-4.jpg",
+      "owner": "caro@correo.com"
+    }
+  ]
 }
