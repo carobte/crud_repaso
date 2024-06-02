@@ -15,7 +15,7 @@ form.addEventListener("submit", async (e) => {
         await addCars(marca.value, precio.value, img.value, user.email)
         alert("se creo el carro")
     } else {
-        await editarCarro(id, marca.value, precio.value, img.value)
+        await editarCarro(id, marca.value, precio.value, img.value, user.email)
         alert("Se edito el carro")
         id = undefined
         await pintarTabla()
@@ -32,7 +32,11 @@ tbody.addEventListener("click", async (event) => {
             img.value = car.img
     } else if (event.target.classList.contains("btn-eliminar")) {
         id = event.target.getAttribute("data-id")
-        let car = await getCar(id)
+        let confirmacion = confirm("¿Está seguro que desea eliminar el carro?")
+        if (confirmacion) {
+            await eliminarCarro(id)
+            await pintarTabla()
+        }
     }
 })
 
@@ -80,11 +84,12 @@ async function addCars(marca, precio, img, owner) {
     pintarTabla()
 }
 
-async function editarCarro(id, marca, precio, img) {
+async function editarCarro(id, marca, precio, img, owner) {
     const carUpdated = {
         "marca": marca,
         "precio": precio,
-        "img": img
+        "img": img,
+        "owner": owner
     }
 
     await fetch(`${url}/${id}`, {
@@ -93,6 +98,12 @@ async function editarCarro(id, marca, precio, img) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(carUpdated)
+    })
+}
+
+async function eliminarCarro(id) {
+    await fetch(`${url}/${id}`,{
+        method:"DELETE"
     })
 }
 
