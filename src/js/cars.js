@@ -5,46 +5,64 @@ const form = document.querySelector("#form")
 const marca = document.querySelector("#marca")
 const precio = document.querySelector("#price")
 const img = document.querySelector("#imagen")
-const table = document.querySelector("#table")
+const tbody = document.querySelector("#tbody")
+const user = isLogged()
+let id
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault()
+    if (!id) {
+        await addCars(marca.value, precio.value, img.value, user.email)
+        alert("se creo el carro")
+    } else {
+        await editarCarro(id, marca.value, precio.value, img.value)
+        alert("Se edito el carro")
+        id = undefined
+        await pintarTabla()
+    }
+    form.reset()
+})
+
+tbody.addEventListener("click", async (event) => {
+    if (event.target.classList.contains("btn-editar")) {
+        id = event.target.getAttribute("data-id")
+        let car = await getCar(id)
+        marca.value = car.marca,
+            precio.value = car.precio,
+            img.value = car.img
+    } else if (event.target.classList.contains("btn-eliminar")) {
+        id = event.target.getAttribute("data-id")
+        let car = await getCar(id)
+    }
+})
 
 async function pintarTabla() {
     const response = await fetch(url)
     const data = await response.json()
-
+    tbody.innerHTML = ""
     data.forEach(car => {
-        table.innerHTML += `
-        <tr>
-                  <th>${car.id}</th>
-                  <td>${car.marca}</td>
-                  <td>$${car.precio}</td>
-                  <td>
-                  <img src="${car.img}" width="200px" alt="carro ${car.marca}"/>
-                  </td>
-        </tr>
+        const tr = document.createElement("tr")
+        tr.innerHTML = `
+            <th>${car.id}</th>
+            <td>${car.marca}</td>
+            <td>$${car.precio}</td>
+            <td>
+                <img src="${car.img}" width="200px" alt="carro ${car.marca}"/>
+            </td>
+            <td>
+                <button data-id=${car.id} class="btn btn-primary btn-editar"> Editar </button>
+                <button data-id=${car.id} class="btn btn-danger btn-eliminar"> Eliminar </button>
+            </td>
         `
-    });
-
+        tbody.appendChild(tr)
+    })
 }
 
-
-
-function isLogged() {
-    const userLocalStorage = localStorage.getItem("user")
-    const user = JSON.parse(userLocalStorage)
-    if (!user) {
-        window.location.href = "./login.html"
-    } else {
-        h1.innerHTML = `Bienvenido ${user.name}`
-        return user
-    }
+async function getCar(id) {
+    const response = await fetch(`${url}/${id}`)
+    const data = await response.json()
+    return data
 }
-
-logout.addEventListener("click", () => {
-    localStorage.removeItem("user")
-})
-
-
-const user = isLogged()
 
 async function addCars(marca, precio, img, owner) {
     const newCar = {
@@ -62,9 +80,36 @@ async function addCars(marca, precio, img, owner) {
     pintarTabla()
 }
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    await addCars(marca.value, precio.value, img.value, user.email);
-    alert("se creo el carro")
+async function editarCarro(id, marca, precio, img) {
+    const carUpdated = {
+        "marca": marca,
+        "precio": precio,
+        "img": img
+    }
+
+    await fetch(`${url}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(carUpdated)
+    })
+}
+
+function isLogged() {
+    const userLocalStorage = localStorage.getItem("user")
+    const user = JSON.parse(userLocalStorage)
+    if (!user) {
+        window.location.href = "./login.html"
+    } else {
+        h1.innerHTML = `Bienvenido ${user.name}`
+        return user
+    }
+}
+
+logout.addEventListener("click", () => {
+    localStorage.removeItem("user")
 })
 
+
+pintarTabla()

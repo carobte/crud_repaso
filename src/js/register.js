@@ -58,5 +58,7 @@ registerForm.addEventListener("submit", async (event) => {
     if (samePassword && userExists) {
         await createUser(userName, lastName, email, password)
         alert("User created successfully")
+        registerForm.reset()
+        window.location.href= "../../index.html"
     }
 })
