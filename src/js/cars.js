@@ -124,3 +124,21 @@ logout.addEventListener("click", () => {
 
 
 pintarTabla()
+
+/* async function editar(id, nuevoValor) { // debemos saber qué propiedad se va a modificar
+
+    const modificacion = {
+        propiedad: nuevoValor // propiedad es el key que tenga en el .json
+    }
+
+    await fetch(`${url}/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(modificacion)
+    })
+    
+pintarTabla()
+
+} */
