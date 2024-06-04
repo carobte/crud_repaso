@@ -38,3 +38,17 @@ GET /posts?name=caro
 
 <a href="https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#plural-routes">GitHub de la documentación</a>
 
+
+## CREAR UN GUARDIAN:
+
+creamos un archivo el cual luego vamos a exportar, este se mete en la carpeta guards y se nombra authGuard.js, esto dentro de la carpeta js:
+
+(() =>{
+	const user = localStorage.getItem("llaveguardadadeluser")
+
+if (!user){
+	window.location.href = "login.html"
+}
+})();
+
+y esto se importa en el HEAD del HTML de la vista que deseamos proteger, en este caso administrador, se llama por medio de script
